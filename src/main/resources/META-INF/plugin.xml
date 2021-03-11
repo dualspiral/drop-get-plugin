@@ -1,19 +1,47 @@
 <idea-plugin>
-    <id>com.github.dualspiral.dropgetplugin</id>
-    <name>drop-get-plugin</name>
-    <vendor>dualspiral</vendor>
+    <id>uk.co.drnaylor.intellij.dropget</id>
+    <name>DropGet</name>
+    <vendor>drnaylor</vendor>
 
     <!-- Product and plugin compatibility requirements -->
     <!-- https://plugins.jetbrains.com/docs/intellij/plugin-compatibility.html -->
     <depends>com.intellij.modules.platform</depends>
+    <depends>com.intellij.modules.java</depends>
 
     <extensions defaultExtensionNs="com.intellij">
-        <applicationService serviceImplementation="com.github.dualspiral.dropgetplugin.services.MyApplicationService"/>
-        <projectService serviceImplementation="com.github.dualspiral.dropgetplugin.services.MyProjectService"/>
+       <!-- <applicationService serviceImplementation="org.jetbrains.plugins.template.services.MyApplicationService"/>
+        <projectService serviceImplementation="org.jetbrains.plugins.template.services.MyProjectService"/> -->
+        <!-- Attributes:
+        language= Language ID
+        shortName= Not specified, will be computed by the underlying implementation classes.
+        displayName= The string to be shown in the Preferences | Editor | Inspections panel
+        The displayName gets registered to identify this inspection.
+        Can be localized using key= and bundle= attributes instead.
+        groupPath= Defines the outermost grouping for this inspection in
+        the Preferences | Editor | Inspections panel. Not localized.
+        groupBundle= Name of *.bundle file to translate groupKey.
+        In this case reuse an IntelliJ Platform bundle file from intellij.platform.resources.en
+        groupKey= Key to use for translation subgroup name using groupBundle file.
+        In this case reuse the IntelliJ Platform subcategory "Probable bugs"
+        enabledByDefault= Inspection state when Inspections panel is created.
+        level= The default level of error found by this inspection, e.g. INFO, ERROR, etc.
+        @see com.intellij.codeHighlighting.HighlightDisplayLevel
+        implementationClass= FQN of inspection implementation
+        -->
+        <localInspection language="JAVA"
+                         displayName="Drop Get"
+                         groupPath="Java"
+                         groupBundle="messages.InspectionsBundle"
+                         groupKey="group.names.probable.bugs"
+                         enabledByDefault="true"
+                         level="WARNING"
+                         implementationClass="uk.co.drnaylor.dropget.inspection.GetInspection"/>
     </extensions>
 
     <applicationListeners>
-        <listener class="com.github.dualspiral.dropgetplugin.listeners.MyProjectManagerListener"
-                  topic="com.intellij.openapi.project.ProjectManagerListener"/>
+        <!-- <listener class="org.jetbrains.plugins.template.listeners.MyProjectManagerListener"
+                  topic="com.intellij.openapi.project.ProjectManagerListener"/> -->
     </applicationListeners>
+
+
 </idea-plugin>
